@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { Collegue } from '../models/Collegue';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recherche-nom',
@@ -8,17 +11,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RechercheNomComponent implements OnInit {
 
   @Input()
-  listeMatricule: string[];
+  listeCollegue: Observable<Collegue[]>;
 
-  rechercheHidden = false ;
+  rechercheHidden = false;
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+
   }
 
-  recherche() {
-    this.rechercheHidden = !this.rechercheHidden;
+  recherche(nom: string) {
+    this.listeCollegue = this.data.rechercheParNom(nom);
   }
 
 }

@@ -3,18 +3,18 @@
     <p class="card-text">Recherche par nom</p>
   </div>
   <div class="col-4">
-    <input class="card-text" />
+    <input class="card-text" #saisie/>
   </div>
 
   <div class="col-4">
-    <a class="btn btn-primary" role="button" (click)="recherche()">Rechercher</a>
+    <a class="btn btn-primary" role="button" (click)="recherche(saisie.value)">Rechercher</a>
   </div>
 </div>
 
-<div class="row" *ngIf="rechercheHidden==true">
+<div class="row">
   <ul class="listeMatricule">
-    <li *ngFor="let matricule of listeMatricule">
-      <p>Matricule : {{matricule}}</p>
+    <li *ngFor="let collegue of listeCollegue | async ">
+      <p>Matricule : {{collegue.matricule}}</p>
     </li>
   </ul>
 </div>
