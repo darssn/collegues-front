@@ -1,71 +1,94 @@
-<div class="col-12 col-xl-4  mb-2 mt-2">
+<div class="row">
+  <div class="col-10 mb-2 mt-2">
     <div class="card">
-        <h5 class="card-header">{{col.nom}}  {{col.prenoms}}</h5>
-        <div class="card-body">
+      <h5 class="card-header">{{col.nom}} {{col.prenoms}}</h5>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-3 text-center">
+            <img src="{{col.photoUrl}}" width="80" height="80">
+          </div>
+          <div class="col-5 offset-xl-1">
             <div class="row">
-
-                <div class="col-12 col-xl-2 text-center">
-                    <img src="{{col.photoUrl}}" width="80" height="80">
-                </div>
-                <div class="col offset-xl-1">
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text">Matricule</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text"> {{col.matricule}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text"> Nom</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">{{col.nom}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text">Prénoms</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text"> {{col.prenoms}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text">Date de Naissance</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">{{col.dateDeNaissance.toDateString()}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text">Email</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text">{{col.email}}</p>
-                        </div>
-                    </div>
-                </div>
-
+              <div class="col">
+                <p class="card-text">Matricule</p>
+              </div>
+              <div class="col">
+                <p class="card-text"> {{col.matricule}}</p>
+              </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Nom</p>
+              </div>
+              <div class="col">
+                <p class="card-text">{{col.nom|uppercase}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Prénoms</p>
+              </div>
+              <div class="col">
+                <p class="card-text"> {{col.prenoms}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Date de Naissance</p>
+              </div>
+              <div class="col">
+                <p class="card-text">{{col.dateDeNaissance|date}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="card-text">Email</p>
+              </div>
 
-            <div class="row mt-1" >
-
-                <div class="col-12 col-xl-7">
-                    <a class="btn btn-primary" (click)="creer()" role="button">Ajouter un nouveau collaborateur</a>
+              <div class="col" *ngIf="isHidden ; else emailSaisie">
+                <p class="card-text">{{col.email}}</p>
+              </div>
+              <ng-template #emailSaisie>
+                <div class="col" >
+                  <input class="card-text" value="{{col.email}} " #saisie (change)="emailchange(saisie.value)" />
                 </div>
-
-                <div class="col-xl-4">
-                    <a class="btn btn-primary" (click)="modifier()" role="button" >Modifier</a>
-                </div>  
+              </ng-template>
 
             </div>
 
 
+            <div class="row" *ngIf="isHidden == false">
+              <div class="col">
+                <p class="card-text">Photo Url</p>
+              </div>
+              <div class="col">
+                <input class="card-text" value="{{col.photoUrl}}" />
+              </div>
+            </div>
+          </div>
 
         </div>
+
+        <div class="row mt-1">
+
+          <div class="col-12 col-xl-7">
+            <a class="btn btn-primary" (click)="creer()" role="button" *ngIf="isHidden == true">Ajouter un nouveau
+              collaborateur</a>
+          </div>
+
+          <div class="col-xl-4" *ngIf="isHidden;else btnValid">
+            <a class="btn btn-primary" (click)="modifier()" role="button">Modifier</a>
+          </div>
+
+          <ng-template #btnValid>
+            <div class="col-xl-4">
+              <a class="btn btn-primary" role="button" (click)="modifier()">Valider</a>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
     </div>
+  </div>
 </div>

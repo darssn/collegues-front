@@ -4,11 +4,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
+import { RechercheNomComponent } from './recherche-nom/recherche-nom.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CollegueComponent
+    CollegueComponent,
+    RechercheNomComponent
   ],
   imports: [
     BrowserModule,NgbModule

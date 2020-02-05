@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-4">
+    <p class="card-text">Recherche par nom</p>
+  </div>
+  <div class="col-4">
+    <input class="card-text" />
+  </div>
+
+  <div class="col-4">
+    <a class="btn btn-primary" role="button" (click)="recherche()">Rechercher</a>
+  </div>
+</div>
+
+<div class="row" *ngIf="rechercheHidden==true">
+  <ul class="listeMatricule">
+    <li *ngFor="let matricule of listeMatricule">
+      <p>Matricule : {{matricule}}</p>
+    </li>
+  </ul>
+</div>
