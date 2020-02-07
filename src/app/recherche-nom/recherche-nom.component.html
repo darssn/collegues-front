@@ -12,9 +12,9 @@
 </div>
 
 <div class="row">
-  <ul class="listeMatricule">
+  <ul>
     <li *ngFor="let collegue of listeCollegue | async ">
-      <p>Matricule : {{collegue.matricule}}</p>
+      <button (click)="affichMatricule(collegue.matricule)">Matricule : {{collegue.matricule}}</button>
     </li>
   </ul>
 </div>

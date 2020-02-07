@@ -1,0 +1,8 @@
+<p>gallerie works!</p>
+
+<div class="row" >
+  <div class="col-3 text-center" *ngFor="let photo of listePhoto" style="margin-bottom: 20px;">
+  <a routerLink="/gallerie/{{photo.matricule}}" ><img src="{{photo.photoUrl}}" width="300" height="300"></a>
+  </div>
+</div>
+

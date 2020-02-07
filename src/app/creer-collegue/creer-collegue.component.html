@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-10 mb-2 mt-2">
+    <p>Creer Collegue</p>
+    <form #etatForm="ngForm">
+      <div class="card">
+
+        <div class="card-body ">
+
+          <div class="row">
+            <div class="col-3 text-center">
+              <img src="{{collegue.photoUrl}}" width="80" height="80">
+            </div>
+
+            <div class="col-5 offset-xl-1 ">
+              <div class="row">
+                <div class="col">
+                  <p class="card-text">Nom</p>
+                </div>
+                <div class="col">
+                  <input name="nom" [(ngModel)]="collegue.nom" #etatNom="ngModel" required />
+                  <p *ngIf="etatNom.invalid && etatNom.dirty">Vous devez saisir un nom</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <p class="card-text">Prénoms</p>
+                </div>
+                <div class="col">
+                  <input name="prenoms" [(ngModel)]="collegue.prenoms" #etatPrenoms="ngModel" required />
+
+                  <p *ngIf="etatPrenoms.invalid && etatPrenoms.dirty">Vous devez saisir un prenoms</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <p class="card-text">Date de Naissance</p>
+                </div>
+                <div class="col">
+                  <input name="dateDeNaissance" type="date" [(ngModel)]="collegue.dateDeNaissance" #etatDate="ngModel"
+                    required />
+                    <p *ngIf="etatDate.invalid && etatDate.dirty">Vous devez choisir une date</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <p class="card-text">Email</p>
+                </div>
+                <div class="col">
+                  <input name="email" type="email" appEmailValidator [(ngModel)]="collegue.email"  ngModel email="true" #etatEmail="ngModel" required />
+                  <p *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email valide</p>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col">
+                  <p class="card-text">PhotoUrl</p>
+                </div>
+                <div class="col">
+                  <input name="photoUrl" appUrlValidator [(ngModel)]="collegue.photoUrl" minlength="7" #etatPhoto="ngModel" required />
+                  <p *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url valide</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="row mt-1" *ngIf="etatForm.valid">
+            <div class="col-xl-4">
+              <a class="btn btn-primary" role="button" (click)="creerCollegue(etatForm)">Creer</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+    <h4>{{retour}}</h4>
+
+  </div>
+</div>
